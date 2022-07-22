@@ -26,6 +26,14 @@ open class Person(val name:String, var age:Int, var isMarried:Boolean = false) :
 //        if (name == "Paul" && age < 27) throw Exception("Invalid age")
 //    }
     override fun sign() = println("$name aged $age can sign documents and their marital status is $isMarried")
+//   Kotlin has no static keyword. If I remember correctly, a method with the static keyword could be called without a class object. Instead, to achieve the same thing as the static keyword in java, we use companion objects and a JVMstatic annotation
+    companion object{
+        @JvmStatic
+        fun main(args: Array<String>){
+            val a = Person("Arista", 24, false)
+            a.sign()
+        }
+    }
 
 }
 
