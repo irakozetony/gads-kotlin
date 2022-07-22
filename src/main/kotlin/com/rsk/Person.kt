@@ -10,6 +10,8 @@ interface Signatory{
 // val is for values that won't change. like constants. var is for values that may change. for example in main, I could change age, but changing name resulted in an error
 // adding the open keyword on class makes it inheritable. normally, Kotlin makes all classes final, which makes it impossible to inherit from them
 open class Person(val name:String, var age:Int, var isMarried:Boolean = false) : Signatory{
+
+    var partnerName : String = ""
 //    var isMarried = false
 
 //    the constructor keyword is used to create secondary constructors.
@@ -32,6 +34,11 @@ open class Person(val name:String, var age:Int, var isMarried:Boolean = false) :
         fun main(args: Array<String>){
             val a = Person("Arista", 24, false)
             a.sign()
+            a.partnerName = "Aristide"
+            println("Partner name is ${a.partnerName}")
+
+            a.partnerName = "Tony"
+            println("Partner name is ${a.partnerName}")
         }
     }
 
