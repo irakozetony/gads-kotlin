@@ -47,9 +47,21 @@ open class Person(val name:String, var age:Int, var isMarried:Boolean = false) :
 
 // when inheriting from a class, we can't put the types(val or var) of the values as this would override the types from the superclass. (Don't know why it's a bad thing)
 class Student(name:String, age:Int) : Person(name, age){}
+
+//Kotlin provides data classes which are classes used only to hold data
+data class User(val name:String, val id: Int)
 fun main(args: Array<String>){
     val p = Person("Paul", 21, true)
     p.sign()
     p.age = 26
     p.sign()
+
+    val kevin = User("Kevin", 1)
+
+//    we can also copy one of the values from our data class data
+    val otherUser = kevin.copy(id = 2)
+//    data classes come with .component() methods to help us in the deconstruction
+    val (name, id) = kevin
+    println("User is $name and has id of $id")
+    print(otherUser)
 }
