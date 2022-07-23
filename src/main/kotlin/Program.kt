@@ -3,7 +3,7 @@ import com.rsk.Providers
 fun main(args: Array<String>){
 
     val providers = Providers()
-    val details = providers.getAllProviders()
+    val details = providers.getAllProvidersEx("Random")
 
     details.forEach(::println)
 //    this is a higher order function. I don't know what that means yet.
