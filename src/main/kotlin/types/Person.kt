@@ -4,6 +4,22 @@ package types
 fun main(args: Array<String>){
     val kevin = Student("Kevin", "Jones",1, "Some Tutor")
     println("${kevin.id} ${kevin.firstName} ${kevin.lastName} ${kevin.tutor}")
+
+    val gil = Student.createPostgrad("Gilbert")
+    println(gil.firstName)
+
+    val tony = Student.createUndergrad("Tony")
+    println(tony.firstName)
+}
+
+class Prgoram{
+    companion object{
+        @JvmStatic
+        fun main(args: Array<String>){
+            val kevin = Student("Yves", "Irakoze", 2)
+            println("${kevin.id} ${kevin.firstName} ${kevin.lastName}")
+        }
+    }
 }
 
 abstract class Person(var firstName: String, var lastName: String){
@@ -11,7 +27,7 @@ abstract class Person(var firstName: String, var lastName: String){
     abstract fun getAddress(): String
 }
 
-class Student(firstName:String, lastName:String, _id: Int): Person(firstName, lastName){
+open class Student(firstName:String, lastName:String, _id: Int): Person(firstName, lastName){
     val id : Int
     var tutor: String
 
@@ -31,4 +47,27 @@ class Student(firstName:String, lastName:String, _id: Int): Person(firstName, la
         return ""
     }
     override fun getAddress(): String{ return ""}
+
+    companion object : XmlSerializer<Student>{
+        override fun toXml(item: Student) {
+            TODO("Not yet implemented")
+        }
+        fun createUndergrad(name: String): Undergraduate{
+            return Undergraduate(name)
+        }
+        fun createPostgrad(name: String): Postgraduate{
+            return Postgraduate(name)
+        }
+    }
+}
+
+class Undergraduate(firstName: String) : Student(firstName, "", 1){
+
+}
+class Postgraduate(firstName: String): Student(firstName, "", 1){
+
+}
+
+interface XmlSerializer<T>{
+    fun toXml(item: T)
 }
