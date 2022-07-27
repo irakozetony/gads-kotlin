@@ -19,9 +19,13 @@ class Student(firstName:String, lastName:String, _id: Int): Person(firstName, la
         id = _id
         tutor = ""
     }
-
     constructor(firstName: String, lastName: String, _id: Int, tutor: String): this(firstName, lastName, _id){
         this.tutor = tutor
+    }
+    fun enrol(courseName: String){
+        val course = Courses.allCourses
+            .filter { it.title == courseName }
+            .firstOrNull()
     }
     override fun getName():String{
         return ""
